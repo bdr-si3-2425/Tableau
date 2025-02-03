@@ -103,3 +103,16 @@ CREATE TABLE S_abonne (
     FOREIGN KEY (abonne_id) REFERENCES Abonnes(id),
     FOREIGN KEY (bibliotheque_id) REFERENCES Bibliotheques(id)
 );
+
+CREATE TABLE Personnel (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    telephone VARCHAR(20),
+    adresse TEXT,
+    role ENUM('gestionnaire', 'administrateur', 'bibliothécaire') NOT NULL,
+    bibliotheque_id INT,
+    FOREIGN KEY (bibliotheque_id) REFERENCES Bibliotheques(id)
+);
+
