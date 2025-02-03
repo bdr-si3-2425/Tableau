@@ -209,3 +209,19 @@ CREATE TRIGGER avant_prolongation
 BEFORE UPDATE ON Emprunts
 FOR EACH ROW
 EXECUTE FUNCTION limiter_prolongations();
+
+
+
+WITH RECURSIVE livres_recursifs AS (
+  -- Sélectionner les livres de la collection initiale
+  SELECT id, titre, collection, 1 AS niveau, ouvrage_associe_id
+  FROM Ouvrages
+  WHERE collection = 'Classiques Français'  -- Remplacer par la collection de ton choix
+  UNION ALL
+  -- Sélectionner les livres associés aux livres déjà trouvés
+  SELECT o.id, o.titre, o.collection, lr.niveau + 1, o.ouvrage_associe_id
+  FROM Ouvrages o
+  JOIN livres_recursifs lr ON o.id = lr.ouvrage_associe_id
+)
+SELECT * FROM livres_recursifs;
+
