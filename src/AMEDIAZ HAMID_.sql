@@ -91,3 +91,43 @@ CREATE TRIGGER check_availability
 BEFORE INSERT ON Loue
 FOR EACH ROW
 EXECUTE FUNCTION check_book_availability();
+
+
+
+
+
+
+
+
+-- Comment gérer l’intégration d’une nouvelle bibliothèque au réseau et l’attribution de ses ressources ?
+INSERT INTO Bibliotheques (nom, adresse, telephone, email) 
+VALUES ('Nouvelle Bibliothèque', 'Adresse', 'Téléphone', 'Email');
+INSERT INTO Exemplaires (ouvrage_id, bibliotheque_id, emplacement, disponible)
+SELECT o.id, <ID_BIBLIOTHEQUE>, 'Emplacement par défaut', TRUE
+FROM Ouvrages o;
+
+
+
+
+
+
+--Événements programmés dans une bibliothèque :
+SELECT e.nom, e.date, e.theme, e.duree
+FROM Evenements e
+WHERE e.bibliotheque_id = <ID_BIBLIOTHEQUE>;
+
+
+
+
+
+
+--Abonnés ayant participé à des événements similaires :
+
+SELECT a.id AS abonne_id, a.nom, a.prenom, e2.nom AS evenement_similaire
+FROM Participe p
+JOIN Participants part ON p.participant_id = part.id
+JOIN Evenements e1 ON p.evenement_id = e1.id
+JOIN Evenements e2 ON e2.theme = e1.theme AND e2.id != e1.id
+JOIN Abonnes a ON part.email = a.email
+WHERE e1.bibliotheque_id = <ID_BIBLIOTHEQUE>;
+
