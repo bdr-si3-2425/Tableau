@@ -1,0 +1,33 @@
+
+
+-- Rôle de bibliothécaire : accès en écriture aux ouvrages, gestion des emprunts
+CREATE ROLE bibliothecaire_user LOGIN PASSWORD 'motdepasse';
+GRANT SELECT, INSERT, UPDATE, DELETE ON Ouvrages TO bibliothecaire_user;
+GRANT SELECT, INSERT, UPDATE ON Emprunts TO bibliothecaire_user;
+
+-- Rôle de gestionnaire : tous les privilèges sur la base de données
+CREATE ROLE gestionnaire_user LOGIN PASSWORD 'motdepasse';
+GRANT ALL PRIVILEGES ON DATABASE bibliotheque TO gestionnaire_user;
+
+-- Rôle d'administrateur : accès complet à la base
+CREATE ROLE admin_user LOGIN PASSWORD 'admin123';
+GRANT ALL PRIVILEGES ON DATABASE bibliotheque TO admin_user;
+
+-- Assigner le rôle à un membre du personnel
+UPDATE Personnel SET poste = 'Bibliothécaire' WHERE id = 1;
+GRANT bibliothecaire_user TO 'nom_personnel' LOGIN;
+
+
+-- Voir les rôles et privilèges d'un utilisateur
+SELECT * FROM information_schema.role_table_grants WHERE grantee = 'nom_utilisateur';
+
+
+CREATE VIEW livres_empruntes AS
+SELECT Ouvrages.titre, Abonnes.nom, Abonnes.prenom, Loue.date_emprunt, Loue.date_retour
+FROM Loue
+JOIN Ouvrages ON Loue.exemplaire_id = Ouvrages.id
+JOIN Abonnes ON Loue.abonne_id = Abonnes.id
+WHERE Loue.date_retour IS NULL;
+
+SELECT * FROM livres_empruntes
+WHERE nom = 'Lemoine';
