@@ -1,0 +1,6 @@
+"id","bibliotheque_id","nom","date","theme","duree","lieu","organisateur"
+1,1,"Conférence sur la littérature","2025-03-15","Littérature",120,"Salle principale","Dr. Moreau"
+2,2,"Atelier d_écriture","2025-04-10","Écriture",90,"Salle des ateliers","Mme Lefèvre"
+3,3,"Projection de film","2025-05-20","Cinéma",150,"Amphithéâtre","M. Dubois"
+4,4,"Rencontre avec un auteur","2025-06-05","Rencontre",100,"Salle de conférence","M. Lemoine"
+5,5,"Atelier BD","2025-07-10","Bande Dessinée",120,"Salle des BD","Mme Garcia"

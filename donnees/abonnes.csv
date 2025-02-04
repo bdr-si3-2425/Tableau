@@ -1,0 +1,8 @@
+"id","nom","prenom","email","telephone","adresse","bibliotheque_id"
+1,"Durand","Alice","alice.durand@mail.com","0612345678","15 rue des Fleurs, Paris",1
+2,"Martin","Paul","paul.martin@mail.com","0623456789","22 avenue des Champs, Lyon",2
+3,"Bernard","Sophie","sophie.bernard@mail.com","0634567890","7 boulevard Saint-Michel, Toulouse",3
+4,"Lemoine","Jean","jean.lemoine@mail.com","0645678901","10 place du Marché, Marseille",4
+5,"Garcia","Emma","emma.garcia@mail.com","0656789012","5 rue Victor Hugo, Lille",5
+6,"Dulon","Alex","alex.dulon@mail.com","0602345678","15 rue des Dolines, Paris",1
+7,"Farat","Paul","paul.farat@mail.com","0652771278","15 rue des Palais, Paris",1

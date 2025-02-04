@@ -24,6 +24,52 @@ BEFORE INSERT ON Emprunts
 FOR EACH ROW
 EXECUTE FUNCTION check_book_availability();
 
+
+
+
+-- Créer une fonction pour calculer le nombre de jours restant avant le retour d'un livre
+CREATE OR REPLACE FUNCTION jours_restant(ouvrage_id INT) 
+RETURNS INT AS $$
+DECLARE
+  date_retour DATE;
+BEGIN
+  SELECT date_retour INTO date_retour FROM Emprunts WHERE ouvrage_id = $1 AND statut = 'emprunté';
+  RETURN (date_retour - CURRENT_DATE);
+END;
+$$ LANGUAGE plpgsql;
+
+-- Utiliser la fonction pour afficher le nombre de jours restants pour un livre emprunté
+SELECT titre, jours_restant(id) FROM Ouvrages WHERE id = 1;
+
+
+
+--Sabrina
+-- Rôle de bibliothécaire : accès en écriture aux ouvrages, gestion des emprunts
+CREATE ROLE bibliothecaire_user LOGIN PASSWORD 'motdepasse';
+GRANT SELECT, INSERT, UPDATE, DELETE ON Ouvrages TO bibliothecaire_user;
+GRANT SELECT, INSERT, UPDATE ON Emprunts TO bibliothecaire_user;
+
+--Hamid
+-- Rôle de gestionnaire : tous les privilèges sur la base de données
+CREATE ROLE gestionnaire_user LOGIN PASSWORD 'motdepasse';
+GRANT ALL PRIVILEGES ON DATABASE bibliotheque TO gestionnaire_user;
+
+--Cyril
+-- Rôle d'administrateur : accès complet à la base
+CREATE ROLE admin_user LOGIN PASSWORD 'admin123';
+GRANT ALL PRIVILEGES ON DATABASE bibliotheque TO admin_user;
+
+
+-- Assigner le rôle à un membre du personnel
+UPDATE Personnel SET poste = 'Bibliothécaire' WHERE id = 1;
+GRANT bibliothecaire_user TO 'nom_personnel' LOGIN;
+
+
+
+-- Voir les rôles et privilèges d'un utilisateur
+SELECT * FROM information_schema.role_table_grants WHERE grantee = 'nom_utilisateur';
+
+
 --Requête pour lister les ouvrages internes
 SELECT titre, auteur, edition
 FROM Ouvrages
@@ -145,47 +191,6 @@ GROUP BY Bibliotheques.id;
 --requête pour consulter la vue:
 SELECT * FROM emprunts_par_bibliotheque;
 
--- Créer une fonction pour calculer le nombre de jours restant avant le retour d'un livre
-CREATE OR REPLACE FUNCTION jours_restant(ouvrage_id INT) 
-RETURNS INT AS $$
-DECLARE
-  date_retour DATE;
-BEGIN
-  SELECT date_retour INTO date_retour FROM Emprunts WHERE ouvrage_id = $1 AND statut = 'emprunté';
-  RETURN (date_retour - CURRENT_DATE);
-END;
-$$ LANGUAGE plpgsql;
-
--- Utiliser la fonction pour afficher le nombre de jours restants pour un livre emprunté
-SELECT titre, jours_restant(id) FROM Ouvrages WHERE id = 1;
-
-
-
---Sabrina
--- Rôle de bibliothécaire : accès en écriture aux ouvrages, gestion des emprunts
-CREATE ROLE bibliothecaire_user LOGIN PASSWORD 'motdepasse';
-GRANT SELECT, INSERT, UPDATE, DELETE ON Ouvrages TO bibliothecaire_user;
-GRANT SELECT, INSERT, UPDATE ON Emprunts TO bibliothecaire_user;
-
---Hamid
--- Rôle de gestionnaire : tous les privilèges sur la base de données
-CREATE ROLE gestionnaire_user LOGIN PASSWORD 'motdepasse';
-GRANT ALL PRIVILEGES ON DATABASE bibliotheque TO gestionnaire_user;
-
---Cyril
--- Rôle d'administrateur : accès complet à la base
-CREATE ROLE admin_user LOGIN PASSWORD 'admin123';
-GRANT ALL PRIVILEGES ON DATABASE bibliotheque TO admin_user;
-
-
--- Assigner le rôle à un membre du personnel
-UPDATE Personnel SET poste = 'Bibliothécaire' WHERE id = 1;
-GRANT bibliothecaire_user TO 'nom_personnel' LOGIN;
-
-
-
--- Voir les rôles et privilèges d'un utilisateur
-SELECT * FROM information_schema.role_table_grants WHERE grantee = 'nom_utilisateur';z
 
 
 -- Créer une fonction de trigger pour limiter les prolongations

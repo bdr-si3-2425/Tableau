@@ -1,0 +1,6 @@
+"id","nom","prenom","email","telephone","adresse","role","bibliotheque_id"
+1,"Leroy","Camille","camille.leroy@mail.com","0678901234","3 rue du Savoir, Paris","gestionnaire",1
+2,"Dubois","Luc","luc.dubois@mail.com","0689012345","8 place du Marché, Lyon","bibliothécaire",2
+3,"Morel","Nina","nina.morel@mail.com","0690123456","12 boulevard Victor, Toulouse","administrateur",3
+4,"Faure","Pierre","pierre.faure@mail.com","0676543210","25 rue du Lac, Marseille","bibliothécaire",4
+5,"Bertrand","Julie","julie.bertrand@mail.com","0665432109","7 avenue du Nord, Lille","gestionnaire",5

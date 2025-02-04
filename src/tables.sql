@@ -1,5 +1,5 @@
 CREATE TABLE Bibliotheques (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     adresse TEXT NOT NULL,
     telephone VARCHAR(20),
@@ -7,7 +7,7 @@ CREATE TABLE Bibliotheques (
 );
 
 CREATE TABLE Abonnes (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
     email VARCHAR(255),
@@ -18,7 +18,7 @@ CREATE TABLE Abonnes (
 );
 
 CREATE TABLE Participants (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
     email VARCHAR(255),
@@ -26,7 +26,7 @@ CREATE TABLE Participants (
 );
 
 CREATE TABLE Evenements (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY,
     bibliotheque_id INT,
     nom VARCHAR(255) NOT NULL,
     date DATE NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE Participe (
 );
 
 CREATE TABLE Ouvrages (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY,
     titre VARCHAR(255) NOT NULL,
     auteur VARCHAR(255),
     collection VARCHAR(255),
@@ -56,7 +56,7 @@ CREATE TABLE Ouvrages (
 );
 
 CREATE TABLE Exemplaires (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY,
     ouvrage_id INT NOT NULL,
     bibliotheque_id INT NOT NULL,
     emplacement VARCHAR(255),
@@ -85,7 +85,7 @@ CREATE TABLE Loue (
 );
 
 CREATE TABLE Transferts (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY,
     exemplaire_id INT NOT NULL,
     bibliotheque_source_id INT NOT NULL,
     bibliotheque_destination_id INT NOT NULL,
@@ -105,14 +105,15 @@ CREATE TABLE S_abonne (
 );
 
 CREATE TABLE Personnel (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
     email VARCHAR(255),
     telephone VARCHAR(20),
     adresse TEXT,
-    role ENUM('gestionnaire', 'administrateur', 'bibliothécaire') NOT NULL,
+    role VARCHAR(20) NOT NULL CHECK (role IN ('gestionnaire', 'administrateur', 'bibliothécaire')),
     bibliotheque_id INT,
-    FOREIGN KEY (bibliotheque_id) REFERENCES Bibliotheques(id)
+    FOREIGN KEY (bibliotheque_id) REFERENCES Bibliotheques(id) ON DELETE CASCADE
 );
+
 

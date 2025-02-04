@@ -1,0 +1,9 @@
+"id","titre","auteur","collection","edition","nombre_pages","usage_interne"
+1,"Encyclopédie Universelle","Collectif","Encyclopédies","Larousse",2000,True
+2,"Le Petit Prince","Antoine de Saint-Exupéry","Romans de poche","Gallimard",96,True
+3,"1984","George Orwell","Romans de poche","Gallimard",328,False
+4,"Les Misérables","Victor Hugo","Romans de poche","Folio",1463,False
+5,"Astérix et Obélix","René Goscinny","BD","Hachette",48,False
+6,"Tintin au Tibet","Hergé","BD","Casterman",62,False
+7,"L_Étranger","Albert Camus","Romans de poche","Folio",123,False
+8,"Harry Potter à l_école des sorciers","J.K. Rowling","Romans de poche","Gallimard",320,False

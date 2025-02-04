@@ -1,0 +1,6 @@
+"id","nom","adresse","telephone","email"
+1,"Bibliothèque Centrale","10 rue des Livres, Paris","0123456789","contact@biblio-paris.fr"
+2,"Médiathèque Lyon","20 place Bellecour, Lyon","0456789123","contact@biblio-lyon.fr"
+3,"Bibliothèque Universitaire","5 avenue du Savoir, Toulouse","0567891234","contact@biblio-toulouse.fr"
+4,"Bibliothèque Régionale","30 rue des Savoirs, Marseille","0490123456","contact@biblio-marseille.fr"
+5,"Médiathèque de Lille","12 avenue du Livre, Lille","0323456789","contact@biblio-lille.fr"
