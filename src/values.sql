@@ -71,11 +71,6 @@ INSERT INTO Loue (abonne_id, exemplaire_id, date_emprunt, date_retour) VALUES
 (7,2,'2025-02-05','2025-02-28'),
 (6,2,'2025-02-05',NULL),
 (4,2,'2025-02-06',NULL);
-<<<<<<< HEAD
-=======
-
->>>>>>> fa957462c426360bba7086f7b639e6b243c277cc
-
 
 INSERT INTO Transferts (id, exemplaire_id, bibliotheque_source_id, bibliotheque_destination_id, date_transfert) VALUES
 (1,1, 1, 2, '2025-02-07'),
@@ -101,11 +96,7 @@ INSERT INTO S_abonne (abonne_id, bibliotheque_id, date_abonnement) VALUES
 
 INSERT INTO Personnel (nom, prenom, email, telephone, adresse, role, bibliotheque_id) VALUES
 ('Leroy', 'Camille', 'camille.leroy@mail.com', '0678901234', '3 rue du Savoir, Paris', 'gestionnaire', 1),
-<<<<<<< HEAD
-( 'Dubois', 'Luc', 'luc.dubois@mail.com', '0689012345', '8 place du Marché, Lyon', 'bibliothécaire', 2),
-=======
 ('Dubois', 'Luc', 'luc.dubois@mail.com', '0689012345', '8 place du Marché, Lyon', 'bibliothécaire', 2),
->>>>>>> fa957462c426360bba7086f7b639e6b243c277cc
 ('Morel', 'Nina', 'nina.morel@mail.com', '0690123456', '12 boulevard Victor, Toulouse', 'administrateur', 3),
 ('Faure', 'Pierre', 'pierre.faure@mail.com', '0676543210', '25 rue du Lac, Marseille', 'bibliothécaire', 4),
 ('Bertrand', 'Julie', 'julie.bertrand@mail.com', '0665432109', '7 avenue du Nord, Lille', 'gestionnaire', 5);
